@@ -1,0 +1,97 @@
+{% extends "empty_dashboard.html" %}
+
+{% block title %}aitisi1 ipovoli{% endblock %}
+
+{% block content %}
+
+
+<h2>Section title</h2>
+<div>
+  <table id="myTable" class="display">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Όνομα</th>
+        <th scope="col">Επίθετο</th>
+        <th scope="col">Όνομα Παιδιού</th>
+        <th scope="col">Επίθετο Παιδιού</th>
+        <th scope="col">Ημερομηνία γέννησης</th>
+        <th scope="col"> Επιλογή Σταθμού</th>
+        <th scope="col"> Αρ. Προτ.</th>
+        <th scope="col"> Ενέργειες</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in users %}
+      <tr>
+
+        <td>{{ user.id }}</td>
+        <td>{{ user.first_name }}</td>
+        <td>{{ user.last_name }}</td>
+        <td>{{ user.kid_first_name }}</td>
+        <td>{{ user.kid_last_name}}</td>
+        <td>{{ user.birth_date}}</td>
+        <td>{{ user.first_choice}}</td>
+        <td>{{ user.pdf_filename}}</td>
+        <td>
+          
+          <!--button trigger preview modal-->
+          <button type="button" class="btn btn-secondary btn-sm btn-equal" data-bs-toggle="modal"
+            data-bs-target="#previewModal_{{ user.id }}" data-bs-toggle="tooltip" data-bs-placement="top"
+            title="Προβολή PDF">
+            <i class="fas fa-eye"></i>
+          </button>
+
+          <!-- Preview Modal -->
+          <div class="modal fade" id="previewModal_{{ user.id }}" tabindex="-1"
+            aria-labelledby="previewModalLabel_{{ user.id }}" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="previewModalLabel_{{ user.id }}">Προεπισκόπηση PDF</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <iframe src="{{ url_for('static', filename='pdfs/aitisi1_sub/' ~ user.pdf_filename) }}"
+                    style="width:100%; height:600px;" frameborder="0"></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Button trigger delete modal -->
+          <button type="button" class="btn btn-danger btn-sm btn-equal" data-bs-toggle="modal"
+            data-bs-target="#deleteModal_{{ user.id }}" 
+            data-bs-toggle="tooltip" data-bs-placement="top"
+            title="Διαγραφή">
+            <i class="fas fa-times"></i>
+          </button>
+
+          <!-- Delete Modal -->
+          <div class="modal fade" id="deleteModal_{{ user.id }}" tabindex="-1"
+            aria-labelledby="modalLabel_{{ user.id }}" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="modalLabel_{{ user.id }}">Προσοχή!</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  Η διαγραφή μιας καταχώρησης είναι οριστική!
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Πίσω</button>
+                  <form action="{{ url_for('delete_row', id=user.id) }}" method="post">
+                    <button type="submit" class="btn btn-warning">Οριστίκη Διαγραφή</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endblock %}

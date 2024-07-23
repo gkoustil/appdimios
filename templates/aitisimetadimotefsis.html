@@ -1,0 +1,202 @@
+{% extends "empty.html" %}
+{% block title %}aitisi-metadimotefsis{% endblock %}
+{% block content %}
+<div class="container text-center mt-5">
+  <div class="row">
+    <div class="col-lg">
+      <form method="POST" action="{{ url_for('aitisimetadimotefsis') }}" class="row text-start" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+<button class="btn btn-primary" id="autofillButton">Autofill</button>
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            {{ form.first_name(class="form-control", id="first_name", placeholder="Όνομα") }}
+            <label for="first_name">{{ form.first_name.label.text }}</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            {{ form.last_name(class="form-control", id="last_name", placeholder="Επίθετο") }}
+            <label for="last_name">{{ form.last_name.label.text }}</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            {{ form.father_fullname(class="form-control", id="father_fullname", placeholder="Ονομ/μο Πατρός") }}
+            <label for="father_fullname">{{ form.father_fullname.label.text }}</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            {{ form.mother_fullname(class="form-control", id="mother_fullname", placeholder="Ονομ/μο Μητρός") }}
+            <label for="mother_fullname">{{ form.mother_fullname.label.text }}</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            {{ form.partner_first_name(class="form-control", id="partner_first_name", placeholder="Όνομα Συζύγου") }}
+            <label for="partner_first_name">{{ form.partner_first_name.label.text }}</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            {{ form.birth_date(class="form-control", id="birth_date", placeholder="Ημερομηνία Γέννησης") }}
+            <label for="birth_date">{{ form.birth_date.label.text }}</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            {{ form.home_address(class="form-control", id="home_address", placeholder="Διεύθυνση Κατοικίας") }}
+            <label for="home_address">{{ form.home_address.label.text }}</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            {{ form.taxidromiki_thirida(class="form-control", id="taxidromiki_thirida", placeholder="Τ.Θ.") }}
+            <label for="taxidromiki_thirida">{{ form.taxidromiki_thirida.label.text }}</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            {{ form.cell_number(class="form-control", id="cell_number", placeholder="Τηλέφωνο") }}
+            <label for="cell_number">{{ form.cell_number.label.text }}</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            {{ form.afm(class="form-control", id="afm", placeholder="Α.Φ.Μ.") }}
+            <label for="afm">{{ form.afm.label.text }}</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            {{ form.email(class="form-control", id="email", placeholder="Ηλεκτρονική Διεύθυνση") }}
+            <label for="email">{{ form.email.label.text }}</label>
+          </div>
+        </div>
+        <h3 class="border-bottom border-3 border-danger">Δικαιολογητικά</h3>
+        <div class="col">
+          <p>
+            Σας υποβάλλω τα απαιτούμενα δικαιολογητικά και παρακαλώ να με γράψετε στα Δημοτολόγια του Δήμου σας, στα
+            οποία
+            επιθυμώ να μεταδημοτεύσω:
+          </p>
+        </div>
+        <div class="col-md-12">
+          <div class="form-check">
+            <label class="form-check-label" for="monimi_egkatastasi">{{ form.monimi_egkatastasi.label.text }}</label>
+            {{ form.monimi_egkatastasi(class="form-check-input", id="monimi_egkatastasi") }}
+          </div>
+          <div class="form-check">
+            <label class="form-check-label" for="gamos_dimoti">{{ form.gamos_dimoti.label.text }}</label>
+            {{ form.gamos_dimoti(class="form-check-input", id="gamos_dimoti") }}
+          </div>
+          <div class="form-check">
+            <label class="form-check-label" for="epanadimotefsi">{{ form.epanadimotefsi.label.text }}</label>
+            {{ form.epanadimotefsi(class="form-check-input", id="epanadimotefsi") }}
+          </div>
+          <div class="form-check">
+            <label class="form-check-label" for="arxiki_dimotikotita">{{ form.arxiki_dimotikotita.label.text }}</label>
+            {{ form.arxiki_dimotikotita(class="form-check-input", id="arxiki_dimotikotita") }}
+          </div>
+          <div class="form-check">
+            <label class="form-check-label" for="luseos_gamou">{{ form.luseos_gamou.label.text }}</label>
+            {{ form.luseos_gamou(class="form-check-input", id="luseos_gamou") }}
+          </div>
+          <div class="form-check">
+            <label class="form-check-label" for="upopsifiotita">{{ form.upopsifiotita.label.text }}</label>
+            {{ form.upopsifiotita(class="form-check-input", id="upopsifiotita") }}
+          </div>
+        </div>
+        <div class="col-md-9 mt-4">
+          <p>
+            Το πιστοποιητικό από το Δήμο εγγραφής μου, που είναι ο Δήμος
+            {{ form.municipality(class="form-control" , id="municipality") }}
+            θα ληφθεί αυτεπάγγελτα από την υπηρεσία σας.
+          </p>
+        </div>
+        <div class="col-md-12 mt-3">
+          <label for="dilosi_dieti_katikia">
+            Υπεύθυνη δήλωση περί της συνεχούς διετούς κατοικίας του στα όρια του Δήμου Θέρμης
+            (ΑΠΑΙΤΕΙΤΑΙ ΓΝΗΣΙΟ ΥΠΟΓΡΑΦΉΣ ΑΠΟ
+            <a href="https://www.gov.gr/" target="_blank">GOV.GR</a>)
+          </label>
+          {{ form.dilosi_dieti_katikia(class="form-control form-control-lg mt-2", id="dilosi_dieti_katikia") }}
+        </div>
+        <div class="col-md-12 mt-4">
+          <label for="dilosi_epanadimotefsi">
+            Υπεύθυνη δήλωση επαναδημότευσης
+            (ΑΠΑΙΤΕΙΤΑΙ ΓΝΗΣΙΟ ΥΠΟΓΡΑΦΉΣ ΑΠΟ
+            <a href="https://www.gov.gr/" target="_blank">GOV.GR</a>)
+          </label>
+          {{ form.dilosi_epanadimotefsi(class="form-control form-control-lg mt-2", id="dilosi_epanadimotefsi") }}
+        </div>
+        <div class="col-md-12 mt-4 mb-5">
+          <label for="astinomiki_tautothta">
+            Αντίγραφο Αστυνομικής Ταυτότητας
+            (ΑΠΑΙΤΕΙΤΑΙ ΓΝΗΣΙΟ ΥΠΟΓΡΑΦΉΣ ΑΠΟ
+            <a href="https://www.gov.gr/" target="_blank">GOV.GR</a>)
+          </label>
+          {{ form.astinomiki_tautothta(class="form-control form-control-lg mt-2", id="astinomiki_tautothta") }}
+        </div>
+        <h3 class="border-bottom border-3 border-danger">Αποδεικτικά στοιχεία διετούς κατοικίας</h3>
+        <div class="col-md-12 mt-4">
+          <label for="antigrafo_e1">
+            Αντίγραφο εντύπου Ε1 (φορολογική δήλωση) του προηγούμενου έτους
+          </label>
+          {{ form.antigrafo_e1(class="form-control form-control-lg mt-2", id="antigrafo_e1") }}
+        </div>
+        <div class="col-md-12 mt-4">
+          <label for="antigrafo_logariasmou">
+            Αντίγραφο πρόσφατης απόδειξης λογαριασμού ενέργειας ή φυσικού αερίου ή ύδρευσης, με την οποία επιβεβαιώνεται
+            η πρόσφατη κατοικία του στο όνομα του αιτούντος.
+          </label>
+          {{ form.antigrafo_logariasmou(class="form-control form-control-lg mt-2", id="antigrafo_logariasmou") }}
+        </div>
+        <div class="col-md-12 mt-4">
+          <p>
+            Σε περίπτωση που ο αιτών την μεταδημότευση στο Δήμο είναι άγαμος και διαμένει την τελευταία διετία στην
+            κύρια κατοικία των γονέων του και δεν εκδίδονται στο όνομά του τα ανωτέρω αναφερόμενα δικαιολογητικά, τότε
+            για την απόδειξη της διετούς κατοικίας προσκομίζει:<br>
+            • Αντίγραφο εντύπου Ε1 (φορολογική δήλωση) έτους 2022 των γονέων του, από την οποία να προκύπτει ότι είναι
+            προστατευόμενος ή φιλοξενούμενος<br>
+            • Αντίγραφο πρόσφατης απόδειξης λογαριασμού ενέργειας ή φυσικού αερίου ή ύδρευσης των γονέων<br>
+            • Υπεύθυνη δήλωση, την οποία δηλώνει ότι κατοικεί μαζί με τους γονείς του σε διεύθυνση εντός των ορίων του
+            Δήμου.
+          </p>
+        </div>
+        <div class="col-12 mt-5">
+          <div class="form-check">
+            <label class="form-check-label" for="Check_dilosi">{{ form.Check_dilosi.label.text }}</label>
+            {{ form.Check_dilosi(class="form-check-input", id="Check_dilosi") }}
+          </div>
+        </div>
+        <div class="col-12 mt-2">
+          <div class="form-check">
+            <label class="form-check-label" for="Check_prosopika_dedomena">{{ form.Check_prosopika_dedomena.label.text
+              }}</label>
+            {{ form.Check_prosopika_dedomena(class="form-check-input", id="Check_prosopika_dedomena") }}
+            <a href="https://www.thermi.gov.gr/%cf%80%ce%bf%ce%bb%ce%b9%cf%84%ce%b9%ce%ba%ce%b7-%cf%80%cf%81%ce%bf%cf%83%cf%84%ce%b1%cf%83%ce%b9%ce%b1%cf%83-%cf%80%cf%81%ce%bf%cf%83%cf%89%cf%80%ce%b9%ce%ba%cf%89%ce%bd-%ce%b4%ce%b5%ce%b4%ce%bf/"
+              target="_blank">Οροι Προστασίας Προσωπικών Δεδομένων</a>
+          </div>
+        </div>
+        <div class="col-md-12 mt-5">
+          <div class="d-grid gap-2 col-2">
+            {{ form.submit(class="btn btn-primary") }}
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-lg text-start">
+      <h1 class="year-range">Για την αίτηση θα χρειαστείτε τα εξής δικαιολογητικά:
+      </h1>
+      <ol class="list-group-numbered">
+        <li class="list-group-item">Υπεύθυνη δήλωση περί της συνεχούς διετούς κατοικίας του στα όρια του Δήμου Θέρμη</li>
+        <li class="list-group-item">ΥΠΕΥΘΥΝΗ ΔΗΛΩΣΗ ΕΠΑΝΑΔΗΜΟΤΕΥΣΗΣ</li>
+        <li class="list-group-item">Αντίγραφο αστυνομικής ταυτότητα</li>
+        <li class="list-group-item">Αντίγραφο πρόσφατης απόδειξης λογαριασμού ενέργειας ή φυσικού αερίου ή ύδρευσης, με την οποία επιβεβαιώνεται
+          η πρόσφατη κατοικία του στο όνομα του αιτούντος</li>
+      </ol>
+      <p class="lead">Σιγουρευτείτε ότι τα δικαιολογητικά φέρουν το γνήσιο της υπογραφής από τον gov.gr</p>
+    </div>
+    {% endblock %}

@@ -1,0 +1,195 @@
+{% extends "empty.html" %}
+
+{% block title %}aitisi1{% endblock %}
+
+{% block content %}
+<div class="container text-center mt-5">
+  <div class="row">
+    <div class="col-lg">
+
+      <form method="POST" action="{{ url_for('aitisi1') }}" class="row text-start" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+
+
+<button class="btn btn-primary" id="autofillButton">Autofill</button>
+
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            {{ form.first_name(class="form-control", id="first_name", placeholder="Όνομα") }}
+            <label for="first_name">{{ form.first_name.label.text }}</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            {{ form.last_name(class="form-control", id="last_name", placeholder="Επίθετο") }}
+            <label for="last_name">{{ form.last_name.label.text }}</label>
+          </div>
+        </div>
+        <div class="col">
+          <label for="first_choice">{{ form.first_choice.label.text }}</label>
+          {{ form.first_choice(class="form-select", id="firstChoice", aria_label="Επιλογή...") }}
+        </div>
+        <div class="col">
+          <label for="second_choice">{{ form.second_choice.label.text }}</label>
+          {{ form.second_choice(class="form-select", id="secondChoice", aria_label="Επιλογή...") }}
+        </div>
+        <h3 class="border-bottom border-3 border-danger">Στοιχεία Παιδιού</h3>
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            {{ form.kid_first_name(class="form-control", id="kid_first_name", placeholder="Όνομα") }}
+            <label for="kid_first_name">{{ form.kid_first_name.label.text }}</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            {{ form.kid_last_name(class="form-control", id="kid_last_name", placeholder="Όνομα") }}
+            <label for="kid_last_name">{{ form.kid_last_name.label.text }}</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            {{ form.birth_date(class="form-control", id="birth_date", placeholder="Ημερομηνία γέννησης") }}
+            <label for="birth_date">{{ form.birth_date.label.text }}</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <p class="fw-semibold"><span class="fw-bold text-decoration-underline">Προσοχή!:</span><br>
+            Η αίτηση γίνεται για κάθε παιδί ξεχωριστά.</p>
+        </div>
+        <h3 class="border-bottom border-3 border-danger">Στοιχεία Μητέρας</h3>
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            {{ form.mother_first_name(class="form-control", id="mother_first_name", placeholder="Όνομα") }}
+            <label for="mother_first_name">{{ form.mother_first_name.label.text }}</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            {{ form.mother_last_name(class="form-control", id="mother_last_name", placeholder="Επίθετο") }}
+            <label for="mother_last_name">{{ form.mother_last_name.label.text }}</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            {{ form.mother_father_name(class="form-control", id="mother_father_name", placeholder="Όνομα Πατέρα") }}
+            <label for="mother_father_name">{{ form.mother_father_name.label.text }}</label>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-floating mb-3">
+            {{ form.mother_adt(class="form-control", id="mother_adt", placeholder="Α.Δ.Τ.") }}
+            <label for="mother_adt">{{ form.mother_adt.label.text }}</label>
+          </div>
+        </div>
+        <h3 class="border-bottom border-3 border-danger">Οικογενειακή Κατάσταση</h3>
+        <div class="col-md-6">
+          <label for="family_status">{{ form.family_status.label.text }}</label>
+          {{ form.family_status(class="form-select", id="family_status", aria_label="Επιλογή...") }}
+        </div>
+        <div class="col-md-6">
+          <label for="amea">{{ form.amea.label.text }}</label>
+          {{ form.amea(class="form-select", id="amea", aria_label="Επιλογή...") }}
+        </div>
+        <div class="col-md-12">
+          <div class="col-md-3 form-group">
+            <label for="kids_number">{{ form.kids_number.label.text }}</label>
+            {{ form.kids_number(class="form-select", id="kids_number", aria_label="Επιλογή...") }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="hidden form-group" id="firstkidNameContainer">
+              <label for="firstkidName">{{ form.firstkidName.label.text }}</label>
+              {{ form.firstkidName(class="form-control", id="firstkidName") }}
+            </div>
+            <div class="hidden form-group" id="firstkidBirthContainer">
+              <label for="firstkid_birthdate">{{ form.firstkid_birthdate.label.text }}</label>
+              {{ form.firstkid_birthdate(class="form-control", id="firstkid_birthdate") }}
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="hidden form-group" id="secondkidNameContainer">
+              <label for="secondkidName">{{ form.secondkidName.label.text }}</label>
+              {{ form.secondkidName(class="form-control", id="secondkidName") }}
+            </div>
+            <div class="hidden form-group" id="secondkidBirthContainer">
+              <label for="secondkid_birthdate">{{ form.secondkid_birthdate.label.text }}</label>
+              {{ form.secondkid_birthdate(class="form-control", id="secondkid_birthdate") }}
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="hidden form-group" id="thirdkidNameContainer">
+              <label for="thirdkidName">{{ form.thirdkidName.label.text }}</label>
+              {{ form.thirdkidName(class="form-control", id="thirdkidName") }}
+            </div>
+            <div class="hidden form-group" id="thirdkidBirthContainer">
+              <label for="thirdkid_birthdate">{{ form.thirdkid_birthdate.label.text }}</label>
+              {{ form.thirdkid_birthdate(class="form-control", id="thirdkid_birthdate") }}
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="hidden form-group" id="fourthkidNameContainer">
+              <label for="fourthkidName">{{ form.fourthkidName.label.text }}</label>
+              {{ form.fourthkidName(class="form-control", id="fourthkidName") }}
+            </div>
+            <div class="hidden form-group" id="fourthkidBirthContainer">
+              <label for="fourthkid_birthdate">{{ form.fourthkid_birthdate.label.text }}</label>
+              {{ form.fourthkid_birthdate(class="form-control", id="fourthkid_birthdate") }}
+            </div>
+          </div>
+        </div>
+        <div class="col mt-5">
+          <div class="form-check">
+            <label class="form-check-label" for="Check_dilosi">{{ form.Check_dilosi.label.text }}</label>
+            {{ form.Check_dilosi(class="form-check-input", id="Check_dilosi") }}
+          </div>
+        </div>
+        <div class="col-md-12 mt-5">
+          <div class="d-grid gap-2 col-2">
+            {{ form.submit(class="btn btn-primary") }}
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-lg text-start">
+      <h1 class="year-range">Πληροφορίες σχετικά με τις ” Αιτήσεις φιλοξενίας βρεφών και νηπίων για την σχολική περίοδο
+        2024-2025″</h1>
+      <p class="year-range lh-base">Από 10 έως 31 Μαΐου οι εγγραφές στους Βρεφονηπιακούς και Παιδικούς σταθμούς του
+        δήμου Θέρμης για το έτος 2023-2024</p>
+      <p class="lh-base">Ξεκινά η υποβολή αιτήσεων για τη φιλοξενία βρεφών και νηπίων στους Βρεφονηπιακούς και Παιδικούς
+        Σταθμούς του Δήμου Θέρμης, για τη σχολική περίοδο 2023-2024. <span class="fw-semibold">Η περίοδος υποβολής της
+          ηλεκτρονικής αίτησης θα ξεκινήσει την Παρασκευή 10 Μαΐου 2024 και θα διαρκέσει έως και την Παρασκευή 31 Μαΐου
+          2024.</span></p>
+      <p class="lh-base">Η υποβολή των αιτήσεων γίνεται ηλεκτρονικά από την ιστοσελίδα του Δήμου Θέρμης
+        www.thermi.gov.gr στην ειδική πλατφόρμα που τίθεται σε λειτουργία από τις 10 Μαΐου, συμπληρώνοντας τα απαραίτητα
+        στοιχεία για τη διαδικασία μοριοδότησης των αιτήσεων. Στις δομές του δήμου Θέρμης φιλοξενούνται βρέφη ηλικίας
+        από 8 μηνών έως 2,5 ετών και νήπια ηλικίας από 2,5 ετών έως την ηλικία εγγραφής τους στην υποχρεωτική
+        εκπαίδευση. Κάθε γονιός ή κηδεμόνας, θα έχει τη δυνατότητα επιλογής δύο δομών, ώστε σε περίπτωση που δε μπορεί
+        να εξυπηρετηθεί στην πρώτη του επιλογή, να μπορεί να εξυπηρετηθεί από την δεύτερη.</p>
+      <p class="lh-base">Γονιός ή κηδεμόνας που αντιμετωπίζει πρόβλημα με την υποβολή της αίτησής του, ή χρειάζεται
+        περαιτέρω πληροφορίες, μπορεί να επικοινωνεί καθημερινά, με τον βρεφονηπιακό σταθμό της επιλογής του από τις
+        08:00 π.μ. έως τις 13:00 μ.μ.
+      </p>
+      <p class="lh-base"><span class="text-decoration-underline fw-bold">ΠΡΟΣΟΧΗ!</span> Εκπρόθεσμες αιτήσεις δεν θα
+        μοριοδοτούνται.
+      </p>
+      <p class="lh-base">Τα δικαιολογητικά, τα οποία κρίνονται απαραίτητα για την ισχύ της ηλεκτρονικής αίτησης, θα
+        προσκομίζονται στη δομή της πρώτης επιλογής των ενδιαφερομένων, κατόπιν συνεννόησης με την αντίστοιχη
+        προϊσταμένη έως τις 10 Ιουνίου. Σε περίπτωση που η υποβολή των δικαιολογητικών δεν είναι ολοκληρωμένη, ή δεν
+        ταυτίζεται με τα στοιχεία που έχουν υποβληθεί στην ηλεκτρονική πλατφόρμα, χάνεται η σειρά μοριοδότησης και η
+        συγκεκριμένη αίτηση έπεται των άλλων που έχουν τα σωστά δικαιολογητικά όπως τους ζητήθηκαν.
+      </p>
+      <p class="lh-base">Εφιστάται η προσοχή για συμμετοχή στο πρόγραμμα ΕΣΠΑ «Προώθηση και υποστήριξη παιδιών για την
+        ένταξή τους στην προσχολική εκπαίδευση καθώς και για την πρόσβαση παιδιών σχολικής ηλικίας εφήβων και ατόμων με
+        αναπηρία, σε υπηρεσίες δημιουργικής απασχόλησης» (λήψη voucher), με επισκέψεις από τον Ιούνιο, σε τακτά χρονικά
+        διαστήματα, στην ιστοσελίδα της ΕΕΤΑΑ, ή τηλεφωνική επικοινωνία με τον παιδικό σταθμό της πρώτης σας επιλογής.
+      </p>
+      <p class="lh-base"><a href="https://www.thermi.gov.gr/diefthynsi-proscholikis-agogis/"
+          class="text-reset">Πληροφορίες σχετικά με τους παιδικούς σταθμούς, στοιχεία επικοινωνίας και τροφεία παιδικών
+          και βρεφονηπιακών σταθμών</a></p>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
