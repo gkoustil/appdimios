@@ -5,12 +5,16 @@ import uuid
 def pdf_names():
     return f"{uuid.uuid4()}.pdf"
 
-def aitisi1_pdf(form_data, filename):
+
+def aitisi1_pdf(form_data, filename, entry_dir):
+
+    pdf_path = os.path.join(entry_dir, filename)
+
     script_dir = os.path.dirname(__file__)
 
-    pdf_dir = os.path.join(script_dir, 'static', 'pdfs', 'aitisi1_sub')
-    os.makedirs(pdf_dir, exist_ok=True)
-    pdf_path = os.path.join(pdf_dir, filename)
+    #pdf_dir = os.path.join(script_dir, 'pdfs', 'aitisi1_sub')
+    #os.makedirs(pdf_dir, exist_ok=True)
+    #pdf_path = os.path.join(pdf_dir, filename)
 
     file_path = os.path.join(script_dir, 'templates', 'pdf_template_aitisi1.html')
     with open(file_path, "r", encoding='utf-8') as fl:
@@ -86,8 +90,16 @@ def aitisi1_pdf(form_data, filename):
     pdf.output(pdf_path)
 
 
-def aitisi_metad_pdf(form_data, filename):
+def aitisi_metad_pdf(form_data, filename, entry_dir):
+
+    pdf_path = os.path.join(entry_dir, filename)
+
     script_dir = os.path.dirname(__file__)
+
+    #pdf_dir = os.path.join(script_dir, 'pdfs', 'metadimotefsi_sub')
+    #os.makedirs(pdf_dir, exist_ok=True)
+    #pdf_path = os.path.join(pdf_dir, filename)
+
     file_path = os.path.join(script_dir, 'templates', 'pdf_template_aitisi_metadim.html')
     with open(file_path, "r", encoding='utf-8') as fl:
         template = fl.read()
@@ -146,4 +158,4 @@ def aitisi_metad_pdf(form_data, filename):
     pdf.add_font(fname='DejaVuSansCondensed.ttf')
     pdf.set_font('DejaVuSansCondensed', size=14)
     pdf.write_html(template)
-    pdf.output(filename)
+    pdf.output(pdf_path)

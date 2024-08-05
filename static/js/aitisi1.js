@@ -70,15 +70,72 @@ $(document).ready(function() {
       document.getElementById("luseos_gamou").checked = true;
       document.getElementById("upopsifiotita").checked = true;
       document.getElementById("municipality").value = "Thermi";
-      document.getElementById("Check_dilosi").checked = true;
+      //document.getElementById("Check_dilosi").checked = true;
       document.getElementById("Check_prosopika_dedomena").checked = true;
     });
   }})
 
+
+// Reusable Preview Modal - Metadimotefsi
 $(document).ready(function() {
-    $('#myTable').DataTable({
-        "columnDefs": [
-            { "targets": [7], "visible": false } // Hide the 8th column (pdf_filename)
-        ]
-    });
+  $('#previewModal_meradimotefsi').on('show.bs.modal', function (e) {
+    var button = $(e.relatedTarget); // Button that triggered the modal
+    var entryDir = button.data('entry-dir');
+    var pdfFilename = button.data('pdf-filename');
+    var pdfDietiKatikia = button.data('pdf-dieti-katikia');
+    var pdfDilosiEpanadimotefsi = button.data('pdf-dilosi-epanadimotefsi');
+
+    // Update iframe src
+    var iframeSrc = `/pdfs/metadimotefsi_sub/${entryDir}/${pdfFilename}`;
+    $('#pdfIframe').attr('src', iframeSrc);
+
+    // Update dieti katikia link
+    if (pdfDietiKatikia) {
+      var dietiKatikiaSrc = `/pdfs/metadimotefsi_sub/${entryDir}/${pdfDietiKatikia}`;
+      $('#dietiKatikiaLink').attr('href', dietiKatikiaSrc);
+      $('#dietiKatikiaDiv').show();
+    } else {
+      $('#dietiKatikiaDiv').hide();
+    }
+
+    // Update dilosi epanadimotefsi link
+    if (pdfDilosiEpanadimotefsi && pdfDilosiEpanadimotefsi !== "None" && pdfDilosiEpanadimotefsi.trim() !== "") {
+      var dilosiEpanadimotefsiSrc = `/pdfs/metadimotefsi_sub/${entryDir}/${pdfDilosiEpanadimotefsi}`;
+      $('#dilosiEpanadimotefsiLink').attr('href', dilosiEpanadimotefsiSrc);
+      $('#dilosiEpanadimotefsiDiv').show();
+    } else {
+      $('#dilosiEpanadimotefsiDiv').hide();
+    }
+  });
 });
+
+// Reusable Preview Modal - Aitisi1
+$(document).ready(function() {
+  $('#previewModal_aitisi1').on('show.bs.modal', function (e) {
+    var button = $(e.relatedTarget); // Button that triggered the modal
+    var entryDir = button.data('entry-dir');
+    var pdfFilename = button.data('pdf-filename');
+
+    // Update iframe src for the single modal
+    $(this).find('iframe').attr('src', `/pdfs/aitisi1_sub/${entryDir}/${pdfFilename}`);
+  });
+
+  // Clear iframe src when the modal is hidden
+  $('#previewModal').on('hidden.bs.modal', function () {
+    $(this).find('iframe').attr('src', '');
+  });
+});
+
+
+// Reusable Delete Modal 
+$(document).ready(function() {
+  $('#deleteModal').on('show.bs.modal', function (e) {
+    var button = $(e.relatedTarget); // Button that triggered the modal
+    var formAction = button.data('form-action');
+
+    // Update form action
+    $('#deleteForm').attr('action', formAction);
+  });
+});
+
+

@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileRequired, FileAllowed
 from wtforms import StringField, SelectField, DateField, BooleanField, EmailField, FileField, SubmitField
-from wtforms.validators import DataRequired, Length, Email, Optional
+from wtforms.validators import DataRequired, Length, Email, Optional, InputRequired
 
 class AitisiEna(FlaskForm):
 
@@ -102,23 +102,23 @@ class AitisiMetadimotefsis(FlaskForm):
     upopsifiotita = BooleanField('Λόγω υποψηφιότητας στις επικείμενες Δημοτικές & Περιφερειακές Εκλογές', validators=[Optional()])
     municipality = StringField('Δήμος', validators=[DataRequired()])
     dilosi_dieti_katikia = FileField('dilosi_dieti_katikia', validators=[
-        Optional(),
+        InputRequired(message='Επιλέξτε αρχείο'),
         FileAllowed(['pdf', 'png'], 'Επιλέξτε αρχείο')
     ])
     dilosi_epanadimotefsi = FileField('dilosi_epanadimotefsi', validators=[
-        FileRequired(),
+        Optional(),
         FileAllowed(['pdf', 'png'], 'Επιλέξτε αρχείο')
     ])
     astinomiki_tautothta = FileField('astinomiki_tautothta', validators=[
-        FileRequired(),
+        Optional(),
         FileAllowed(['pdf', 'png'], 'Επιλέξτε αρχείο')
     ])
     antigrafo_e1 = FileField('antigrafo_e1', validators=[
-        FileRequired(),
+        Optional(),
         FileAllowed(['pdf', 'png'], 'Επιλέξτε αρχείο')
     ])   
     antigrafo_logariasmou = FileField('antigrafo_logariasmou', validators=[
-        FileRequired(),
+        Optional(),
         FileAllowed(['pdf', 'png'], 'Επιλέξτε αρχείο')
     ])  
     Check_dilosi = BooleanField('Δηλώνω υπεύθυνα ότι τα στοιχεία που παρείχα παραπάνω είναι ακριβή και αληθή.', validators=[DataRequired()]) 
